@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  port-forward-test:
+    build: .
+    container_name: port-forward-test-app
+    ports:
+      - "7856:7856"
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:7856/health', (res) => { process.exit(res.statusCode === 200 ? 0 : 1) })"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - port-forward-network
+
+networks:
+  port-forward-network:
+    driver: bridge 
