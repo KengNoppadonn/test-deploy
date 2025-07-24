@@ -1,164 +1,150 @@
-# test-deploy
+# ตลาดรถยนต์มือสอง - Used Car Marketplace
 
-# 🚀 เว็บไซต์ทดสอบ Port Forward
-
-เว็บไซต์ง่ายๆ สำหรับทดสอบการทำ Port Forward ที่ใช้ **Port 7856**
+เว็บไซต์ขายรถยนต์มือสองที่สร้างด้วย Next.js และ TypeScript
 
 ## ✨ คุณสมบัติ
 
-- 🌐 Express.js Web Server
-- 🎨 Modern UI ด้วย Glassmorphism Design
-- 📱 Responsive Design
-- ⏰ Real-time Timestamp
-- 🔧 API Endpoints สำหรับทดสอบ
-- 📊 Health Check Endpoint
+- 🚗 แสดงรายการรถยนต์มือสอง
+- 🔍 ระบบค้นหาและกรองข้อมูล
+- 💰 แสดงราคาและรายละเอียดรถยนต์
+- ❤️ ระบบเพิ่มรถยนต์ในรายการโปรด
+- 📱 Responsive Design รองรับทุกอุปกรณ์
+- 🎨 UI/UX ที่ทันสมัยและใช้งานง่าย
 
-## 🛠️ การติดตั้ง
+## 🛠️ เทคโนโลยีที่ใช้
 
-### วิธีที่ 1: รันโดยตรง (Development)
+- **Next.js 14** - React Framework
+- **TypeScript** - Type Safety
+- **Tailwind CSS** - Styling
+- **Lucide React** - Icons
+- **React Hooks** - State Management
 
-1. **ติดตั้ง Dependencies:**
-   ```bash
-   npm install
-   ```
+## 🚀 การติดตั้งและใช้งาน
 
-2. **รัน Server:**
-   ```bash
-   npm start
-   ```
+### 1. ติดตั้ง Dependencies
 
-3. **สำหรับ Development (Auto-reload):**
-   ```bash
-   npm run dev
-   ```
-
-### วิธีที่ 2: ใช้ Docker (Production)
-
-1. **Build Docker Image:**
-   ```bash
-   docker build -t port-forward-test .
-   ```
-
-2. **รัน Container:**
-   ```bash
-   docker run -d -p 7856:7856 --name port-forward-test-app port-forward-test
-   ```
-
-3. **ใช้ Docker Compose (แนะนำ):**
-   ```bash
-   docker-compose up -d
-   ```
-
-4. **ดู Logs:**
-   ```bash
-   docker-compose logs -f
-   ```
-
-5. **หยุด Container:**
-   ```bash
-   docker-compose down
-   ```
-
-## 🌐 การเข้าถึง
-
-หลังจากรัน server แล้ว คุณสามารถเข้าถึงได้ที่:
-
-- **หน้าหลัก:** http://localhost:7856
-- **Health Check:** http://localhost:7856/health
-- **API Status:** http://localhost:7856/api/status
-
-## 🔧 การทดสอบ Port Forward
-
-### 1. ทดสอบในเครื่องเดียวกัน
 ```bash
-curl http://localhost:7856
+npm install
 ```
 
-### 2. ทดสอบจากเครื่องอื่นในเครือข่ายเดียวกัน
+### 2. รันในโหมด Development
+
 ```bash
-curl http://[IP_ADDRESS]:7856
+npm run dev
 ```
 
-### 3. ทดสอบ Health Check
+เว็บไซต์จะเปิดที่: http://localhost:7856
+
+### 3. Build สำหรับ Production
+
 ```bash
-curl http://localhost:7856/health
+npm run build
+npm start
 ```
 
-## 📋 Endpoints ที่มี
+## 📁 โครงสร้างโปรเจค
 
-| Endpoint | Method | Description |
-|----------|--------|-------------|
-| `/` | GET | หน้าหลักของเว็บไซต์ |
-| `/health` | GET | Health check endpoint |
-| `/api/status` | GET | API status information |
+```
+├── app/
+│   ├── layout.tsx          # Root layout
+│   ├── page.tsx           # หน้าหลัก
+│   └── globals.css        # Global styles
+├── public/                # Static files
+├── package.json           # Dependencies
+├── next.config.js         # Next.js config
+├── tailwind.config.ts     # Tailwind config
+└── tsconfig.json          # TypeScript config
+```
 
-## 🎯 การใช้งานสำหรับ Port Forward
+## 🎯 ฟีเจอร์หลัก
 
-1. **รัน Server บนเครื่องของคุณ**
-2. **ตั้งค่า Port Forward บน Router:**
-   - External Port: 7856 (หรือ port อื่นที่ต้องการ)
-   - Internal Port: 7856
-   - Internal IP: IP ของเครื่องที่รัน server
-3. **ทดสอบจากภายนอก:**
-   - เข้า http://[YOUR_PUBLIC_IP]:7856
-   - หรือ http://[YOUR_DOMAIN]:7856
+### หน้าหลัก
+- แสดงรายการรถยนต์มือสอง
+- ระบบค้นหาตามยี่ห้อและรุ่น
+- กรองตามราคา
+- เพิ่มรถยนต์ในรายการโปรด
 
-## 🔍 การตรวจสอบ
+### ข้อมูลรถยนต์
+- รูปภาพรถยนต์
+- ราคา
+- ปีที่ผลิต
+- ระยะทางที่ใช้งาน
+- ประเภทเชื้อเพลิง
+- ระบบเกียร์
+- สถานที่ตั้ง
+- คะแนนรีวิว
 
-หาก Port Forward ทำงานได้สำเร็จ คุณจะเห็น:
-- ✅ หน้าเว็บที่สวยงาม
-- 📊 ข้อมูล Port 7856
-- ⏰ เวลาปัจจุบันที่อัพเดทแบบ Real-time
+## 🎨 การออกแบบ
 
-## 🐳 Docker Commands
+- ใช้ Tailwind CSS สำหรับ styling
+- Responsive design รองรับทุกขนาดหน้าจอ
+- Modern UI ด้วย gradient และ shadow effects
+- Icon จาก Lucide React
 
-### Build และ Run
+## 📱 Responsive Design
+
+เว็บไซต์รองรับการแสดงผลบน:
+- 📱 Mobile (320px+)
+- 📱 Tablet (768px+)
+- 💻 Desktop (1024px+)
+
+## 🔧 การพัฒนา
+
+### เพิ่มรถยนต์ใหม่
+
+แก้ไขข้อมูลใน `app/page.tsx` ในส่วน `mockCars` array:
+
+```typescript
+{
+  id: 7,
+  brand: 'BMW',
+  model: 'X5',
+  year: 2022,
+  price: 2500000,
+  mileage: 25000,
+  fuelType: 'เบนซิน',
+  transmission: 'อัตโนมัติ',
+  location: 'กรุงเทพมหานคร',
+  image: 'https://example.com/image.jpg',
+  rating: 4.8,
+  isFavorite: false
+}
+```
+
+### เพิ่มฟีเจอร์ใหม่
+
+1. สร้าง component ใหม่ใน `components/` folder
+2. Import และใช้งานใน `app/page.tsx`
+3. อัปเดต TypeScript interfaces ตามต้องการ
+
+## 🚀 Deployment
+
+### Vercel (แนะนำ)
+
+1. Push code ไปยัง GitHub
+2. เชื่อมต่อกับ Vercel
+3. Deploy อัตโนมัติ
+
+### Docker
+
 ```bash
 # Build image
-docker build -t port-forward-test .
+docker build -t used-car-marketplace .
 
 # Run container
-docker run -d -p 7856:7856 --name port-forward-test-app port-forward-test
-
-# หรือใช้ docker-compose
-docker-compose up -d
+docker run -p 7856:7856 used-car-marketplace
 ```
 
-### Management
-```bash
-# ดู logs
-docker logs port-forward-test-app
+## 📞 ติดต่อ
 
-# หยุด container
-docker stop port-forward-test-app
+- 📧 Email: info@usedcar.com
+- 📱 Phone: 02-123-4567
+- 💬 Line: @usedcar
 
-# ลบ container
-docker rm port-forward-test-app
+## 📄 License
 
-# ดู images
-docker images
-```
-
-### Health Check
-```bash
-# ตรวจสอบ container status
-docker ps
-
-# ตรวจสอบ health check
-docker inspect port-forward-test-app | grep Health -A 10
-```
-
-## 🚨 หมายเหตุ
-
-- Server จะรันบน `0.0.0.0` เพื่อให้เข้าถึงได้จากภายนอก
-- ตรวจสอบ Firewall settings ของระบบ
-- ตรวจสอบ Router Port Forward settings
-- Docker container มี health check และ auto-restart
-- ใช้ non-root user เพื่อความปลอดภัย
+MIT License - ดูรายละเอียดใน [LICENSE](LICENSE) file
 
 ---
 
-**สร้างโดย:** Port Forward Test Project  
-**Port:** 7856  
-**Framework:** Express.js  
-**Container:** Docker Alpine Node.js 18 
+**สร้างด้วย ❤️ โดย Next.js และ TypeScript** 
